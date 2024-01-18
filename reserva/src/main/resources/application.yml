@@ -1,0 +1,28 @@
+server:
+  port: 15432
+
+spring:
+  application:
+    name: brewery-tour
+  datasource:
+    password: 1012
+    url: jdbc:postgresql://localhost:5432/prueba
+    username: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+
+application:
+  security:
+    jwt:
+      secret-key: d85193e2bdfe794b7f98a16924adf59d1e05bd7a8b157450fac917d0bf89e38b
+      expiration: 86400000 # a day
+
+url: http://localhost:8080/api-docs.yaml
