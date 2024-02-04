@@ -40,6 +40,4 @@ public class Reserve {
     @ManyToOne
     @JoinColumn(name = "id_vehicle")
     private Vehicle vehicle;
-
-
 }

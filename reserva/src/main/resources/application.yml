@@ -6,12 +6,12 @@ spring:
     name: brewery-tour
   datasource:
     password: 1012
-    url: jdbc:postgresql://localhost:5432/prueba
+    url: jdbc:postgresql://localhost:5432/Reserve
     username: postgres
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
@@ -25,4 +25,3 @@ application:
       secret-key: d85193e2bdfe794b7f98a16924adf59d1e05bd7a8b157450fac917d0bf89e38b
       expiration: 86400000 # a day
 
-url: http://localhost:8080/api-docs.yaml

@@ -25,8 +25,11 @@ public class Vehicle {
     private Integer id;
     private String plate;
     private String model;
-    @OneToMany
-    @JoinColumn
+    @ManyToOne
+    @JoinColumn(name = "id_reserve")
+    private Reserve reserve;
+    @OneToOne
+    @JoinColumn(name = "id_user")
     private User user;
 
 }

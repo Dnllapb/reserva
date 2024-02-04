@@ -1,6 +1,6 @@
 package com.proyecto.reserva.application.service;
 
-import com.proyecto.reserva.application.exception.BreweryTourException;
+import com.proyecto.reserva.application.exception.UserException;
 import com.proyecto.reserva.application.lasting.EMessage;
 import com.proyecto.reserva.domain.dto.AuthenticationDto;
 import com.proyecto.reserva.domain.dto.UserDto;
@@ -13,8 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.naming.AuthenticationException;
-
 
 @Service
 public record AuthenticationService(
@@ -25,7 +23,7 @@ public record AuthenticationService(
         AuthenticationManager authenticationManager
 ) {
 
-    public String register(UserDto userDto) throws BreweryTourException {
+    public String register(UserDto userDto) throws UserException {
         try {
 
             User user = User.builder()
@@ -37,11 +35,11 @@ public record AuthenticationService(
             userRepository.save(user);
             return jwtService.generateToken(user);
         } catch (DataIntegrityViolationException e) {
-            throw new BreweryTourException(EMessage.USER_EXISTS);
+            throw new UserException(EMessage.USER_EXISTS);
         }
     }
 
-    public String authenticate(AuthenticationDto authenticationDto) throws BreweryTourException {
+    public String authenticate(AuthenticationDto authenticationDto) throws UserException {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         authenticationDto.email(),
@@ -50,7 +48,7 @@ public record AuthenticationService(
         );
 
         User user = userRepository.findUserByEmail(authenticationDto.email())
-                .orElseThrow(() -> new BreweryTourException(EMessage.INVALID_CREDENTIALS));
+                .orElseThrow(() -> new UserException(EMessage.INVALID_CREDENTIALS));
         return jwtService.generateToken(user);
     }
 }

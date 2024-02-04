@@ -1,5 +1,4 @@
 package com.proyecto.reserva.domain.entity;
-
 import com.proyecto.reserva.application.lasting.ERole;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,16 +23,28 @@ public class User implements UserDetails {
 
   @Id
   @SequenceGenerator(
-    name = "user_id_sequence",sequenceName = "user_id_sequence")
+          name = "user_id_sequence",
+          sequenceName = "user_id_sequence"
+  )
   @GeneratedValue(
-    strategy = GenerationType.SEQUENCE, generator = "user_id_sequence")
+          strategy = GenerationType.SEQUENCE,
+          generator = "user_id_sequence"
+  )
   private Integer id;
   private String name;
   private String email;
   private String password;
   private Boolean enable;
+
   @Enumerated(EnumType.STRING)
   private ERole role;
+
+  @OneToMany
+  @ToString.Exclude
+  private List<Reserve> reserve;
+  @OneToOne
+  @JoinColumn(name = "id_vehicle")
+  private Vehicle vehicle;
 
   @Override
   public final boolean equals(Object o) {

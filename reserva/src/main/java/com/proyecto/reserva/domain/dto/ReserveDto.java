@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.proyecto.reserva.application.lasting.Estatus;
 import com.proyecto.reserva.domain.entity.User;
-import com.proyecto.reserva.domain.entity.Vehicle;
+//import com.proyecto.reserva.domain.entity.Vehicle;
 
 import java.time.LocalDateTime;
 

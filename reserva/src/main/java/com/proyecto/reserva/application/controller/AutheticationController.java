@@ -1,7 +1,7 @@
 package com.proyecto.reserva.application.controller;
 
 
-import com.proyecto.reserva.application.exception.BreweryTourException;
+import com.proyecto.reserva.application.exception.UserException;
 import com.proyecto.reserva.application.service.AuthenticationService;
 import com.proyecto.reserva.domain.dto.AuthenticationDto;
 import com.proyecto.reserva.domain.dto.UserDto;
@@ -21,13 +21,13 @@ public record AutheticationController(
 ) {
 
   @PostMapping("/register")
-  public ResponseEntity<?> register(@RequestBody UserDto userDto) throws BreweryTourException {
+  public ResponseEntity<?> register(@RequestBody UserDto userDto) throws UserException {
     String token = authenticationService.register(userDto);
     return new ResponseEntity<>(token, HttpStatus.CREATED);
   }
 
   @PostMapping("/authenticate")
-  public ResponseEntity<?> authenticate(@RequestBody AuthenticationDto authenticationDto) throws BreweryTourException {
+  public ResponseEntity<?> authenticate(@RequestBody AuthenticationDto authenticationDto) throws UserException {
     String token = authenticationService.authenticate(authenticationDto);
     return new ResponseEntity<>(token, HttpStatus.OK);
   }
