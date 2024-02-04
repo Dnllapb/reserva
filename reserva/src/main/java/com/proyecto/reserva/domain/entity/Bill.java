@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -26,13 +27,15 @@ public class Bill {
     private Integer id;
     private LocalDateTime date;
     private Integer hourFinal;
-
-    @ManyToOne
-    @JoinColumn(name ="id_reserve")
-    private Reserve reserve;
     private Double totalBill;
+
     @ManyToOne
     @JoinColumn(name ="id_user")
-    private User user;
+    private Reserve reserve;
+
+    @ManyToOne
+    @JoinColumn(name ="id_vehicle")
+    private Vehicle vehicle;
 
 }
+
